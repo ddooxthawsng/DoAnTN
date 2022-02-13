@@ -1,6 +1,7 @@
 import React from "react";
 import SlideShow from "./SlideShow";
 import {Col, Row} from "antd";
+import Header from "../../layout/Header";
 
 class Home extends React.Component{
     render() {
@@ -9,17 +10,23 @@ class Home extends React.Component{
             { src: 'images/set2.jpg', caption: "Caption 2" },
             { src: 'images/set3.jpg', caption: "Caption 3" }
         ];
+        const collection2 = [
+            { src: 'images/set2.jpg', caption: "Caption one" },
+            { src: 'images/set3.jpg', caption: "Caption 2" },
+            { src: 'images/set1.jpg', caption: "Caption 3" }
+        ];
         return(
             <>
+                <Header />
                 <Row>
                     <Col md={12}>
                         <div style={{width:"100%"}}>
-                            <SlideShow input={collection} ratio={`1:1`} mode={`manual`}/>
+                            <SlideShow input={collection} ratio={`1:1`} mode={`automatic`}/>
                         </div>
                     </Col>
                     <Col md={12}>
                         <div style={{width:"100%"}}>
-                            <SlideShow input={collection} ratio={`1:1`} mode={`manual`}/>
+                            <SlideShow input={collection2} ratio={`1:1`} mode={`automatic`}/>
                         </div>
                     </Col>
                 </Row>

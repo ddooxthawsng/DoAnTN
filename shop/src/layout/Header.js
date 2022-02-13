@@ -1,15 +1,20 @@
 import React from "react";
+import {Image} from "primereact/image";
 
 class Header extends React.Component{
+    randomNumber = ()=>{
+        return Math.floor(Math.random() * 2) + 1;
+    }
+
     render() {
+        let numberR = this.randomNumber();
+        let urlImage = './images/home'+numberR+'.jpg';
+        console.log(urlImage)
         return(
-            <header class="bg-dark py-5">
-                <div class="container px-4 px-lg-5 my-5">
-                    <div class="text-center text-white">
-                        <h1 class="display-4 fw-bolder">Shop in style</h1>
-                        <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+            <header>
+                    <div class="text-center text-white" >
+                        <Image src={urlImage} alt="Image Text" width="100%" height="800px"/>
                     </div>
-                </div>
             </header>
         )
     }
