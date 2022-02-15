@@ -8,6 +8,7 @@ import SlideShow from "./SlideShow";
 import PageHeaderCommon from "../../layout/PageHeaderCommon";
 import {Button} from 'primereact/button'
 import SameProduct from "./SameProduct";
+import MultipleSlidesExample from "../../layout/MultipleSlidesExample";
 class Detail extends React.Component{
     render() {
         const collection = [
@@ -16,13 +17,10 @@ class Detail extends React.Component{
             { src: 'images/set3.jpg', caption: "Caption 3" }
         ];
         return(
-            <Layout>
-                <Header style={{backgroundColor:"white"}}>
-                    <PageHeaderCommon/>
-                </Header>
+            <Layout style={{backgroundColor:"transparent"}}>
                 <Layout>
                     <Sider style={{backgroundColor:"white"}}>
-                        <SideBar style={{backgroundColor:"transparent"}}></SideBar>
+                        <SideBar ></SideBar>
                     </Sider>
                     <Content style={{backgroundColor:"white"}}>
                         <Row>
@@ -71,7 +69,10 @@ class Detail extends React.Component{
                         </Row>
                     </Content>
                 </Layout>
-                <SameProduct/>
+                <div id={"sameProduct"}><b>SẢN PHẨM LIÊN QUAN</b>
+                </div>
+                <hr/>
+                <MultipleSlidesExample/>
             </Layout>
         )
     }

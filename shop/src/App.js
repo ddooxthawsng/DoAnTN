@@ -14,6 +14,7 @@ function App() {
       <BrowserRouter>
             <div className="App">
                 <Nav />
+                <hr style={{margin:"0px"}}/>
                 <Router></Router>
                 <Footer />
             </div>
@@ -23,7 +24,9 @@ function App() {
 
 export default App;
 <>
-<script src="https://unpkg.com/primereact/primereact.all.min.js"></script>
+    <script src="https://unpkg.com/primereact/primereact.all.min.js"></script>
     <script src="https://unpkg.com/primereact/image/image.min.js"></script>
     <script src="https://unpkg.com/primereact/core/core.min.js"></script>
+    <script src="https://unpkg.com/primereact/dataview/dataview.min.js"></script>
+
 </>

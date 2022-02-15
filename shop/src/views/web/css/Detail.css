@@ -32,3 +32,10 @@
     width :100%;
     heigh :20%;
 }
+
+#sameProduct{
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    margin-top: 8%;
+}

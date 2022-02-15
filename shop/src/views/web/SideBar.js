@@ -1,6 +1,5 @@
 import React from "react";
-import { Menu } from 'antd';
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
+import { Menu } from 'antd';;
 
 const { SubMenu } = Menu;
 
@@ -16,30 +15,28 @@ class SideBar extends React.Component{
                 defaultSelectedKeys={['1']}
                 defaultOpenKeys={['sub1']}
                 mode="inline"
+
             >
-                <SubMenu key="sub1" icon={<MailOutlined />} title="Navigation One">
-                    <Menu.ItemGroup key="g1" title="Item 1">
-                        <Menu.Item key="1">Option 1</Menu.Item>
-                        <Menu.Item key="2">Option 2</Menu.Item>
-                    </Menu.ItemGroup>
-                    <Menu.ItemGroup key="g2" title="Item 2">
-                        <Menu.Item key="3">Option 3</Menu.Item>
-                        <Menu.Item key="4">Option 4</Menu.Item>
-                    </Menu.ItemGroup>
+                <SubMenu key="sub0" title="Danh sách sản phẩm">
+                    <Menu.Item key="z">Toàn bộ sản phẩm</Menu.Item>
+                <SubMenu key="sub1" title="Áo" icon={<span className={"pi pi-angle-right"}></span>}>
+                    <Menu.Item key="1">Áo Nỉ</Menu.Item>
+                    <Menu.Item key="3">Áo TankTop</Menu.Item>
+                    <Menu.Item key="4">Áo Polo</Menu.Item>
+                    <Menu.Item key="5">Áo Sweater</Menu.Item>
+                    <Menu.Item key="6">Áo Phông</Menu.Item>
                 </SubMenu>
-                <SubMenu key="sub2" icon={<AppstoreOutlined />} title="Navigation Two">
-                    <Menu.Item key="5">Option 5</Menu.Item>
-                    <Menu.Item key="6">Option 6</Menu.Item>
-                    <SubMenu key="sub3" title="Submenu">
-                        <Menu.Item key="7">Option 7</Menu.Item>
-                        <Menu.Item key="8">Option 8</Menu.Item>
-                    </SubMenu>
+                <SubMenu key="sub2" title="Quần" icon={<span className={"pi pi-angle-right"}></span>}>
+                    <Menu.Item key="7">Quần Jean</Menu.Item>
+                    <Menu.Item key="8">Quần Short</Menu.Item>
+                    <Menu.Item key="9">Quần Kaki</Menu.Item>
                 </SubMenu>
-                <SubMenu key="sub4" icon={<SettingOutlined />} title="Navigation Three">
-                    <Menu.Item key="9">Option 9</Menu.Item>
-                    <Menu.Item key="10">Option 10</Menu.Item>
-                    <Menu.Item key="11">Option 11</Menu.Item>
-                    <Menu.Item key="12">Option 12</Menu.Item>
+                <SubMenu key="sub3" title="Phụ kiện" icon={<span className={"pi pi-angle-right"}></span>}>
+                    <Menu.Item key="10">Balo</Menu.Item>
+                    <Menu.Item key="11">Túi</Menu.Item>
+                    <Menu.Item key="12">Thắt lưng</Menu.Item>
+                </SubMenu>
+                    <Menu.Item key="13">Set bộ</Menu.Item>
                 </SubMenu>
             </Menu>
         )
