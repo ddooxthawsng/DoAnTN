@@ -184,21 +184,17 @@ class ProductList extends React.Component{
     }
     renderHeader() {
         return (
-            <div className="grid grid-nogutter">
+            <div>
                 <Row>
-                    <Col md={10}>
+                    <Col md={12}>
                         <div style={{textAlign: 'left'}}>
                             <Dropdown options={this.sortOptions} value={this.state.sortKey} optionLabel="label" placeholder="Sắp xếp theo giá" onChange={this.onSortChange}/>
                         </div>
-                    </Col>
-                    <Col md={4}>
-                        <div id={"namePlist"}><b>Name</b></div>
-                    </Col>
-                    <Col md={10}>
-                        <div  style={{textAlign: 'right'}}>
-                            <DataViewLayoutOptions layout={this.state.layout} onChange={(e) => this.setState({ layout: e.value })} />
-                        </div>
-                    </Col>
+                    </Col><Col md={12}>
+                    <div  style={{textAlign: 'right'}}>
+                        <DataViewLayoutOptions layout={this.state.layout} onChange={(e) => this.setState({ layout: e.value })} />
+                    </div>
+                </Col>
                 </Row>
             </div>
         );
