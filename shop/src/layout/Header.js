@@ -9,7 +9,6 @@ class Header extends React.Component{
     render() {
         let numberR = this.randomNumber();
         let urlImage = './images/home'+numberR+'.jpg';
-        console.log(urlImage)
         return(
             <header>
                     <div class="text-center text-white" >

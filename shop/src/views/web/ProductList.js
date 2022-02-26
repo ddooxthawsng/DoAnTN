@@ -8,84 +8,15 @@ import {Image} from "primereact/image";
 import {Col, Row} from "antd";
 import 'primeflex/primeflex.css'
 import SideBar from "./SideBar";
+import {sanPhamService} from "../../service/sanPhamService";
+import { Tag } from 'primereact/tag';
+import {NumberFormat} from "../../utils/NumberFormat";
 
 class ProductList extends React.Component{
     constructor() {
         super();
         this.state = {
-            products: [{
-                rating: this.randomNumber(1,5),
-                name :'a',
-                description :'b',
-                price : this.randomNumber(1,999),
-                inventoryStatus :'INSTOCK'
-            },{
-                rating: this.randomNumber(1,5),
-                name :'a',
-                description :'b',
-                price : this.randomNumber(1,999),
-                inventoryStatus :'INSTOCK'
-            },{
-                rating: this.randomNumber(1,5),
-                name :'a',
-                description :'b',
-                price : this.randomNumber(1,999),
-                inventoryStatus :'INSTOCK'
-            },{
-                rating: this.randomNumber(1,5),
-                name :'a',
-                description :'b',
-                price : this.randomNumber(1,999),
-                inventoryStatus :'INSTOCK'
-            },{
-                rating: this.randomNumber(1,5),
-                name :'a',
-                description :'b',
-                price : this.randomNumber(1,999),
-                inventoryStatus :'INSTOCK'
-            },{
-                rating: this.randomNumber(1,5),
-                name :'a',
-                description :'b',
-                price : this.randomNumber(1,999),
-                inventoryStatus :'INSTOCK'
-            },{
-                rating: this.randomNumber(1,5),
-                name :'a',
-                description :'b',
-                price : this.randomNumber(1,999),
-                inventoryStatus :'INSTOCK'
-            },{
-                rating: this.randomNumber(1,5),
-                name :'a',
-                description :'b',
-                price : this.randomNumber(1,999),
-                inventoryStatus :'INSTOCK'
-            },{
-                rating: this.randomNumber(1,5),
-                name :'a',
-                description :'b',
-                price : this.randomNumber(1,999),
-                inventoryStatus :'INSTOCK'
-            },{
-                rating: this.randomNumber(1,5),
-                name :'a',
-                description :'b',
-                price : this.randomNumber(1,999),
-                inventoryStatus :'INSTOCK'
-            },{
-                rating: this.randomNumber(1,5),
-                name :'a',
-                description :'b',
-                price : this.randomNumber(1,999),
-                inventoryStatus :'INSTOCK'
-            },{
-                rating: this.randomNumber(1,5),
-                name :'a',
-                description :'b',
-                price : this.randomNumber(1,999),
-                inventoryStatus :'INSTOCK'
-            }],
+            products: [],
             layout: 'grid',
             sortKey: null,
             sortOrder: null,
@@ -93,15 +24,28 @@ class ProductList extends React.Component{
         };
 
         this.sortOptions = [
-            {label: 'Giá giảm dần', value: '!price'},
-            {label: 'Giá tăng dần', value: 'price'},
+            {label: 'Giá giảm dần', value: '!gia'},
+            {label: 'Giá tăng dần', value: 'gia'},
         ];
 
         this.itemTemplate = this.itemTemplate.bind(this);
         this.onSortChange = this.onSortChange.bind(this);
+        this.service = new sanPhamService();
     }
+    componentDidMount() {
+        this.getData();
+    }
+
     randomNumber = (to,from)=>{
         return Math.floor(Math.random() * from) + to;
+    }
+    getData = async ()=>{
+        let rs = await this.service.getData();
+        if(rs && rs.data && rs.data && rs.data)
+            await this.setState({
+                products : rs.data
+            })
+        console.log(rs.data)
     }
     onSortChange(event) {
         const value = event.value;
@@ -123,22 +67,23 @@ class ProductList extends React.Component{
     }
     renderListItem(data) {
         let numberR = this.randomNumber(1,8);
-        let urlImage = './images/anh'+numberR+'.jpg';
+        let urlImage = './images'+data.anh+'.jpg';
         return (
             <div className="col-12">
                 <div className="product-list-item">
                     <Image src={urlImage} alt="Image Text"/>
-                    {/*<img src={`images/product/${data.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={data.name} />*/}
                     <div className="product-list-detail">
-                        <div className="product-name">{data.name}</div>
-                        <div className="product-description">{data.description}</div>
+                        <div className="product-name">{data.tenSP}</div>
+                        <div className="product-description">{data.moTa}</div>
                         <Rating value={data.rating} readOnly cancel={false}></Rating>
-                        <i className="pi pi-tag product-category-icon"></i><span className="product-category">{data.category}</span>
+                        {/*<i className="pi pi-tag product-category-icon"></i><span className="product-category">{data.category}</span>*/}
                     </div>
                     <div className="product-list-action">
-                        <span className="product-price">${data.price}</span>
-                        <Button icon="pi pi-shopping-cart" label="Add to Cart" disabled={data.inventoryStatus === 'OUTOFSTOCK'}></Button>
-                        <span className={`product-badge status-${data.inventoryStatus.toLowerCase()}`}>{data.inventoryStatus}</span>
+                        <span className="product-price">{NumberFormat.formatMoney(data.gia)}</span>
+                        <Button icon="pi pi-shopping-cart" label="Thêm vào giỏ" disabled={data.soLuong > 0 ? false : true}></Button>
+                        <Tag className="mr-2" icon={data.soLuong > 0 ? "pi pi-check":"pi pi-times"}
+                             severity={data.soLuong >0 ? "success":"danger"}
+                             value={data.soLuong >0 ? "Còn hàng":"Hết hàng"}></Tag>
                     </div>
                 </div>
             </div>
@@ -146,27 +91,28 @@ class ProductList extends React.Component{
     }
     renderGridItem(data) {
         let numberR = this.randomNumber(1,8);
-        let urlImage = './images/anh'+numberR+'.jpg';
+        let urlImage = './images/'+data.anh+'.jpg';
         return (
-                <Col md={12}>
+                <Col md={8}>
                 <div className="product-grid-item card">
                     <div className="product-grid-item-top">
                         <div>
                             <i className="pi pi-tag product-category-icon"></i>
                             <span className="product-category">{data.category}</span>
                         </div>
-                        <span className={`product-badge status-${data.inventoryStatus.toLowerCase()}`}>{data.inventoryStatus}</span>
-                    </div>
+                        <Tag className="mr-2" icon={data.soLuong > 0 ? "pi pi-check":"pi pi-times"}
+                             severity={data.soLuong >0 ? "success":"danger"}
+                             value={data.soLuong >0 ? "Còn hàng":"Hết hàng"}></Tag></div>
                     <div className="product-grid-item-content">
                         <Image src={urlImage} alt="Image Text"/>
                         {/*<img src={`images/product/${data.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={data.name} />*/}
-                        <div className="product-name">{data.name}</div>
-                        <div className="product-description">{data.description}</div>
-                        <Rating value={data.rating} readOnly cancel={false}></Rating>
+                        <div className="product-name">{data.tenSP}</div>
+                        <div className="product-description">{data.moTa}</div>
+                        {/*<Rating value={data.rating} readOnly cancel={false}></Rating>*/}
                     </div>
                     <div className="product-grid-item-bottom">
-                        <span className="product-price">${data.price}</span>
-                        <Button icon="pi pi-shopping-cart" label="Add to Cart" disabled={data.inventoryStatus === 'OUTOFSTOCK'}></Button>
+                        <span className="product-price">{NumberFormat.formatMoney(data.gia)}</span>
+                        <Button icon="pi pi-shopping-cart" label="Thêm vào giỏ" disabled={data.soLuong > 0 ? false : true}></Button>
                     </div>
                 </div>
                 </Col>

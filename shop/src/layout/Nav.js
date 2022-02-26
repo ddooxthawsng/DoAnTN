@@ -24,7 +24,7 @@ class Nav extends React.Component{
                 <div className="container px-4 px-lg-5">
                     <Link className="navbar-brand" to="/">
                         {/*<Image src={'./images/Logo.jpg'} width="150px" height="75px"/>*/}
-                       LOGO
+                       Clothing
                     </Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -54,7 +54,7 @@ class Nav extends React.Component{
                                             <Menu.Item key="b2"><Link to="/detail">Quần dài</Link></Menu.Item>
                                             </Menu.ItemGroup>
                                     </SubMenu>
-                                    <Menu.Item key="z"><Link to="/detail">Set</Link></Menu.Item>
+                                    <Menu.Item key="c"><Link to="/detail">Set</Link></Menu.Item>
                                     <SubMenu key="d" title="Phụ kiện">
                                     <Menu.ItemGroup>
                                         <Menu.Item key="d0"><Link to="/detail">Toàn bộ phụ kiện</Link></Menu.Item>
