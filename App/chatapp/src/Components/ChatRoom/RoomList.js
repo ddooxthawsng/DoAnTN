@@ -37,6 +37,7 @@ export default function RoomList() {
     const { rooms, setIsAddRoomVisible, setSelectedRoomId } = React.useContext(AppContext);
     const [isModalVisible, setIsModalVisible] = useState(false);
 
+    console.log(rooms)
     const showModal = () => {
         setIsModalVisible(true);
     };

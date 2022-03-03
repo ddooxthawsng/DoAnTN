@@ -11,6 +11,11 @@ import SideBar from "./SideBar";
 import {sanPhamService} from "../../service/sanPhamService";
 import { Tag } from 'primereact/tag';
 import {NumberFormat} from "../../utils/NumberFormat";
+import {Navigate, Routes} from "react-router";
+import {NavLink} from "react-router-dom";
+import {Route} from "react-router-dom";
+import Home from "./Home";
+
 
 class ProductList extends React.Component{
     constructor() {
@@ -20,7 +25,8 @@ class ProductList extends React.Component{
             layout: 'grid',
             sortKey: null,
             sortOrder: null,
-            sortField: null
+            sortField: null,
+            SanPham :""
         };
 
         this.sortOptions = [
@@ -46,6 +52,13 @@ class ProductList extends React.Component{
                 products : rs.data
             })
         console.log(rs.data)
+    }
+    getSanPham = async (data)=>{
+        let rs = await this.service.findone(data);
+        if(rs && rs.data && rs.data && rs.data)
+            await this.setState({
+                SanPham : rs.data
+            })
     }
     onSortChange(event) {
         const value = event.value;
@@ -73,7 +86,13 @@ class ProductList extends React.Component{
                 <div className="product-list-item">
                     <Image src={urlImage} alt="Image Text"/>
                     <div className="product-list-detail">
-                        <div className="product-name">{data.tenSP}</div>
+                        <div className="product-name">
+                            <NavLink to={"/detail/"+data.maSP}>
+                                <p>{data.tenSP} </p></NavLink>
+                            <Routes>
+                            <Route path={"/Home2"} element={<Home/>}></Route>
+                            </Routes>
+                        </div>
                         <div className="product-description">{data.moTa}</div>
                         <Rating value={data.rating} readOnly cancel={false}></Rating>
                         {/*<i className="pi pi-tag product-category-icon"></i><span className="product-category">{data.category}</span>*/}

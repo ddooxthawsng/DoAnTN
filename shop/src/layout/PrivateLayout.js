@@ -1,9 +1,9 @@
 import React from "react";
 import {Outlet} from "react-router-dom";
-import "primereact/resources/themes/md-dark-indigo/theme.css";  //theme
-import "primereact/resources/primereact.min.css";                  //core css
-import "primeicons/primeicons.css";
-import 'antd/dist/antd.css';
+// import "primereact/resources/themes/md-dark-indigo/theme.css";  //theme
+// import "primereact/resources/primereact.min.css";                  //core css
+// import "primeicons/primeicons.css";
+// import 'antd/dist/antd.css';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import {
     DesktopOutlined,

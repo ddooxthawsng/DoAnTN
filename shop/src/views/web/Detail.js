@@ -9,7 +9,28 @@ import PageHeaderCommon from "../../layout/PageHeaderCommon";
 import {Button} from 'primereact/button'
 import SameProduct from "./SameProduct";
 import MultipleSlidesExample from "../../layout/MultipleSlidesExample";
+import {sanPhamService} from "../../service/sanPhamService";
 class Detail extends React.Component{
+    constructor() {
+        super();
+        this.state ={
+            SanPham : ""
+        }
+        this.service = new sanPhamService();
+    }
+    componentDidMount() {
+        console.log("this.props")
+        console.log(this.props)
+    }
+    getData = async ()=>{
+        let rs = await this.service.findone();
+        if(rs && rs.data && rs.data && rs.data)
+            await this.setState({
+                products : rs.data
+            })
+        console.log(rs.data)
+    }
+
     render() {
         const collection = [
             { src: 'images/set1.jpg', caption: "Caption one" },

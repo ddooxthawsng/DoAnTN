@@ -44,16 +44,16 @@ class MenuAdmin extends Component {
                         </Menu.ItemGroup>
                     </SubMenu>
                     <Menu.Item key="e" >
-                        <Link to="/admin/detail">Quản lý danh mục</Link>
+                        <Link to="/admin/danhmuc">Quản lý danh mục</Link>
                     </Menu.Item >
                     <Menu.Item key="f" >
-                        <Link to="/admin/detail">Quản lý Đơn hàng</Link>
+                        <Link to="/admin/donhang">Quản lý Đơn hàng</Link>
                     </Menu.Item >
                     <Menu.Item key="g" >
-                        <Link to="/admin/detail">Quản lý Chi tiết đơn hàng</Link>
+                        <Link to="/admin/chitietdonhang">Quản lý Chi tiết đơn hàng</Link>
                     </Menu.Item >
-                    <Menu.Item key="g" >
-                        <Link to="/admin/detail">Quản lý Tài Khoản</Link>
+                    <Menu.Item key="h" >
+                        <Link to="/admin/taikhoan">Quản lý Tài Khoản</Link>
                     </Menu.Item >
                 </Menu>
             </div>
